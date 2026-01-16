@@ -1,10 +1,14 @@
 import uvicorn
-import os
+import logging
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
-    # Use environment variables for configuration if available, otherwise default
-    host = os.getenv("HOST", "0.0.0.0")
-    port = int(os.getenv("PORT", 8000))
-    
-    print(f"Starting Telecom Churn Agent on {host}:{port}")
-    uvicorn.run("src.api:app", host=host, port=port, reload=True)
+    logger.info(f"Starting Telecom Churn Agent on {settings.HOST}:{settings.PORT}")
+    uvicorn.run("src.api:app", host=settings.HOST, port=settings.PORT, reload=True)

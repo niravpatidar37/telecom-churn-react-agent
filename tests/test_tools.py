@@ -1,14 +1,6 @@
 # tests/test_tools.py
 
-import sys
-from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
-
-from tools import overall_churn_rate, churn_rate_by_column
+from src.tools import overall_churn_rate, churn_rate_by_column
 
 
 def test_overall_churn_rate_basic():
